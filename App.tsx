@@ -1,20 +1,26 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import React, { useState } from 'react';
+import LoginScreen, { LoginScreenProps } from './LoginScreen';
+import ShoppingListScreen from './ShoppingListScreen';
 
-export default function App() {
+interface AppProps {}
+
+export default function App({}: AppProps) {
+  const [loggedIn, setLoggedIn] = useState(false);
+
+  const handleLogin = () => {
+    // Lógica para autenticação do usuário
+    // Se a autenticação for bem-sucedida, atualize o estado para "loggedIn"
+    // Simulação de autenticação bem-sucedida
+    setLoggedIn(true);
+  };
+
   return (
-    <View style={styles.container}>
-      <Text>Open up App.tsx to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <>
+      {loggedIn ? (
+        <ShoppingListScreen />
+      ) : (
+        <LoginScreen onLogin={handleLogin} />
+      )}
+    </>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
